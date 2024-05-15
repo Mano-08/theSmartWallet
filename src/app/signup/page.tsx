@@ -7,11 +7,11 @@ import * as RadioGroup from "@radix-ui/react-radio-group";
 import { toast } from "react-hot-toast";
 import * as Form from "@radix-ui/react-form";
 import axios from "axios";
-// import "../../../envConfig";
-
+import { useRouter } from 'next/navigation'
 function Connect() {
   const account = useAccount();
-  // const account = { address: "01234" };
+  const router = useRouter()
+  
   const areasOfExpertise = [
     "Videography",
     "Photography",
@@ -38,12 +38,11 @@ function Connect() {
   const submitForm = async (data: any) => {
     console.log(data);
     await connect({ connector });
-    let acc = useAccount();
-    data["walletAddress"] = acc?.address;
-    return await axios.post(
-      `${process.env.NEXT_PUBLIC_SERVER}/api/create-user`,
-      data
-    );
+
+    data["walletAddress"] = account?.address;
+    console.log(account.address)
+     await axios.post(`${process.env.NEXT_PUBLIC_SERVER}/api/create-user`, data);
+     router.push('/portfolio')
   };
 
   return (
@@ -57,13 +56,7 @@ function Connect() {
         onSubmit={(event) => {
           event.preventDefault();
 
-          // CALL THE FUNCTION TO GENERATE THE COINBASE WALLET ID
-          // connect({ connector })
-          // the wallet id generated is then passed to MONGODB
-
-          // ASSUMPTION
-          // walletID = "qwerty"
-          const walletID = "qwerty";
+          const walletID = "wallet";
 
           const data: any = Object.fromEntries(
             new FormData(event.currentTarget)
