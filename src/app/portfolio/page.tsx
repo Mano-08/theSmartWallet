@@ -1,9 +1,9 @@
 "use client";
 
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useAccount, useConnect, useDisconnect } from "wagmi";
-// import "../../../envConfig";
+import Link from "next/link";
 
 const features = [
   {
@@ -24,32 +24,7 @@ const features = [
 ];
 
 export default function Feature() {
-  // const account = useAccount();
-  const [responses, setResponses] = useState({});
-  const account = {
-    address: "qwerty",
-  };
-
-  useEffect(() => {
-    async function fetchResponses() {
-      try {
-        const response = await axios.post(
-          `${process.env.NEXT_PUBLIC_SERVER}/api/get-user`,
-          {
-            walletAddress: account?.address,
-          }
-        );
-
-        console.log("response from backend", response);
-        return response;
-      } catch (error) {
-        return false;
-      }
-    }
-
-    fetchResponses();
-  }, []);
-
+  const account = useAccount();
   const { connectors, connect, status, error } = useConnect();
   const connector = connectors[0];
   return (
@@ -63,12 +38,12 @@ export default function Feature() {
           </h2>
           {account ? (
             <div>
-              <a
-                href={`https://debank.com/profile/${account.address}`}
+              <Link
+                href={`/portfolio/${account.address}`}
                 className=" underline block mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-2xl"
               >
                 Your Portfolio
-              </a>
+              </Link>
               <p className=" text-gray-300 mt-2 font-semibold text-2xl">
                 Explore your portfolio for insights on your assets.
               </p>
