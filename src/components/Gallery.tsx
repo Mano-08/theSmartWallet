@@ -5,7 +5,7 @@ function Gallery() {
     {
       title: "50MM COLLECTIVE",
       context: "EDUCATIONAL VIDEO",
-      src: "https://50mmcollective.my.canva.site/50mmcollective/videos/c025ef1c9343fb6326fd2f6f83aed42f.mp4",
+      src: "https://50mmcollective.my.canva.site/50mmcollective/videos/f199f937e916531de5f814caea3a3009.mp4",
     },
     {
       title: "THE LEGACY PORTRAIT PROJECT",
