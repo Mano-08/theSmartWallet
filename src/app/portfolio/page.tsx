@@ -3,6 +3,8 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useAccount, useConnect, useDisconnect } from "wagmi";
+// import "../../../envConfig";
+
 const features = [
   {
     name: "Be Limited to Single Device",
@@ -32,7 +34,7 @@ export default function Feature() {
     async function fetchResponses() {
       try {
         const response = await axios.post(
-          "http://localhost:5000/api/get-user",
+          `${process.env.NEXT_PUBLIC_SERVER}/api/get-user`,
           {
             walletAddress: account?.address,
           }

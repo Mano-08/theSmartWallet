@@ -7,6 +7,7 @@ import * as RadioGroup from "@radix-ui/react-radio-group";
 import { toast } from "react-hot-toast";
 import * as Form from "@radix-ui/react-form";
 import axios from "axios";
+// import "../../../envConfig";
 
 function Connect() {
   const account = useAccount();
@@ -39,7 +40,10 @@ function Connect() {
     await connect({ connector });
     let acc = useAccount();
     data["walletAddress"] = acc?.address;
-    return await axios.post("http://localhost:5000/api/create-user", data);
+    return await axios.post(
+      `${process.env.NEXT_PUBLIC_SERVER}/api/create-user`,
+      data
+    );
   };
 
   return (
