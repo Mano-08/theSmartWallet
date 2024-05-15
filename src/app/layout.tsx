@@ -9,7 +9,6 @@ import Nav from "../components/Navbar";
 import { Toaster } from "react-hot-toast";
 
 const inter = Inter({ subsets: ["latin"] });
-const spaceGrotesk = Space_Grotesk({ subsets: ["latin"] });
 const monsterrat = Montserrat({ subsets: ["latin"] });
 
 export const metadata: Metadata = {

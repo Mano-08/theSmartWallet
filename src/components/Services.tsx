@@ -3,8 +3,8 @@ import Image from "next/image";
 import goal from "../../public/svgs/goal.svg";
 import eye from "../../public/svgs/eye.svg";
 import bulb from "../../public/svgs/bulb.svg";
-import { Space_Grotesk } from "next/font/google";
-const spaceGrotesk = Space_Grotesk({ subsets: ["latin", "latin-ext"] });
+import { Montserrat } from "next/font/google";
+const monsterrat = Montserrat({ subsets: ["latin"] });
 
 function Services() {
   const services = [
@@ -44,7 +44,7 @@ function Services() {
             >
               <Image src={ele.img} alt={ele.title} className="" />
               <p
-                className={`${spaceGrotesk.className} text-[5vw] max-w-[230px] md:max-w-[250px] sm:text-[2.5vw] md:text-[1.75vw]`}
+                className={`${monsterrat.className} text-[5vw] max-w-[230px] md:max-w-[250px] sm:text-[2.5vw] md:text-[1.75vw]`}
               >
                 {ele.title}
               </p>

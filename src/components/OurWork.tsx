@@ -1,8 +1,8 @@
 import Image from "next/image";
 import higherSession2024Image from "../../public/images/higher_session.jpg";
 import React from "react";
-import { Space_Grotesk } from "next/font/google";
-const spaceGrotesk = Space_Grotesk({ subsets: ["latin"] });
+import { Montserrat } from "next/font/google";
+const monsterrat = Montserrat({ subsets: ["latin"] });
 
 function OurWork() {
   const ourWork = [
@@ -52,7 +52,7 @@ function OurWork() {
                 )}
               </div>
               <p
-                className={`${spaceGrotesk.className} text-[7vw] sm:text-[2.5vw] md:text-[1.6vw]`}
+                className={`${monsterrat.className} text-[7vw] sm:text-[2.5vw] md:text-[1.6vw]`}
               >
                 {ele.title}
               </p>

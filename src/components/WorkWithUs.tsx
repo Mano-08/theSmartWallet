@@ -1,11 +1,11 @@
-import { Space_Grotesk } from "next/font/google";
+import { Montserrat } from "next/font/google";
 import twitter from "../../public/svgs/twitter.svg";
 import work_bg from "../../public/images/bg_work.png";
 import work_gform from "../../public/images/gform_work.png";
 import instagram from "../../public/svgs/instagram.svg";
 import Image from "next/image";
 import React from "react";
-const spaceGrotesk = Space_Grotesk({ subsets: ["latin"] });
+const monsterrat = Montserrat({ subsets: ["latin"] });
 
 function WorkWithUs() {
   return (
@@ -33,7 +33,7 @@ function WorkWithUs() {
             </p>
             <div className="flex flex-col">
               <h2
-                className={`${spaceGrotesk.className} text-[4.5vw] sm:text-[3.5vw] md:text-[1.85vw] py-2 text-white`}
+                className={`${monsterrat.className} text-[4.5vw] sm:text-[3.5vw] md:text-[1.85vw] py-2 text-white`}
               >
                 SOCIALS
               </h2>

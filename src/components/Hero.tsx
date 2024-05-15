@@ -14,7 +14,6 @@ import Image from "next/image";
 import Link from "next/link";
 const sasita = Sansita_Swashed({ subsets: ["latin"] });
 const petrona = Petrona({ subsets: ["latin"] });
-const spaceGrotesk = Space_Grotesk({ subsets: ["latin", "latin-ext"] });
 const monsterrat = Montserrat({ subsets: ["latin"] });
 
 export default function Hero() {
@@ -50,7 +49,7 @@ export default function Hero() {
           <div>
             <Link href="/signup">
               <button
-                className={`${spaceGrotesk.className} bg-yellow-400 px-10 py-2 text-[1.4rem]`}
+                className={`${monsterrat.className}  bg-yellow-400 px-10 py-2 text-[1.4rem]`}
               >
                 Get started
               </button>
