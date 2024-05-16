@@ -5,6 +5,7 @@ import work_gform from "../../public/images/gform_work.png";
 import instagram from "../../public/svgs/instagram.svg";
 import Image from "next/image";
 import React from "react";
+import Link from "next/link";
 const monsterrat = Montserrat({ subsets: ["latin"] });
 
 function WorkWithUs() {
@@ -22,7 +23,7 @@ function WorkWithUs() {
 
         <div className="flex flex-col md:flex-row gap-7 sm:gap-10 md:gap-16">
           <div className="flex flex-col justify-between py-5">
-            <p className="text-[3.5vw] sm:text-[2vw] md:text-[1.35vw] font-medium py-3">
+            <p className="text-[3.5vw] md:w-[40vw] sm:text-[2vw] md:text-[1.35vw] font-medium py-3">
               We envision events not just as moments in time, but as stories
               waiting to be told. Through our innovative approach to OnChain
               media production, we don't just document events — we bring them to
@@ -37,26 +38,38 @@ function WorkWithUs() {
               >
                 SOCIALS
               </h2>
-              <div className="flex flex-row items-center gap-1 sm:gap-3">
-                <Image
-                  src={twitter}
-                  alt="Twitter"
-                  className="h-8 w-8 sm:h-12 sm:w-12"
-                />
-                <Image
-                  src={instagram}
-                  alt="Instagram"
-                  className="h-8 w-8 sm:h-12 sm:w-12"
-                />
+              <div
+                target="_blank"
+                className="flex flex-row items-center gap-1 sm:gap-3"
+              >
+                <a href="https://twitter.com/50mmCollective">
+                  <Image
+                    src={twitter}
+                    alt="Twitter"
+                    className="h-8 w-8 sm:h-12 sm:w-12"
+                  />
+                </a>
+                <a target="_blank" href="https://instagram.com/50mmCollective">
+                  <Image
+                    src={instagram}
+                    alt="Instagram"
+                    className="h-8 w-8 sm:h-12 sm:w-12"
+                  />
+                </a>
               </div>
             </div>
           </div>
 
-          <Image
-            src={work_gform}
-            alt="Google Form - Work with us"
-            className="w-[90vw] md:w-[40vw] h-auto"
-          />
+          <a
+            target="_blank"
+            href="https://docs.google.com/forms/d/e/1FAIpQLSfMeLDL-Ipt0Ts35mQTB4R_JAO0JkuIkpxT79ScWTbtFTzmAg/viewform"
+          >
+            <Image
+              src={work_gform}
+              alt="Google Form - Work with us"
+              className="w-[90vw] md:w-[40vw] h-auto"
+            />
+          </a>
         </div>
       </div>
     </section>

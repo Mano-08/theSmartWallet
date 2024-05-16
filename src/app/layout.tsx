@@ -21,9 +21,9 @@ export default function RootLayout(props: { children: ReactNode }) {
     <html lang="en">
       <body className={monsterrat.className}>
         <Providers>
-          {/* <Nav /> */}
+          <Nav />
           {props.children}
-          <Toaster position="top-center" reverseOrder={false} />
+          <Toaster position="bottom-right" reverseOrder={false} />
         </Providers>
       </body>
     </html>
