@@ -8,16 +8,16 @@ import { useAccount } from "wagmi";
 import loading from "../../../../public/images/loading.gif";
 import cat from "../../../../public/images/cat.jpg";
 
-function page({ params: { id } }: { params: { id: string } }) {
-  // const account = useAccount();
+function page({ params }: { params: { id: string } }) {
+  const { id } = params;
 
-  // DUMMY ACCOUNT -- REMOVE THIS AND MAKE NECESSARY CHANGES
-  const account = {
-    address: id,
-  };
+    // DUMMY ACCOUNT -- REMOVE THIS AND MAKE NECESSARY CHANGES
+    const account = {
+      address: id,
+    };
 
-  const [data, setData] = React.useState<any | null>(null);
-  const [loaded, setLoaded] = React.useState(false);
+    const [data, setData] = React.useState<any | null>(null);
+    const [loaded, setLoaded] = React.useState(false);
 
   if (!account.address) {
     return (
@@ -38,7 +38,7 @@ function page({ params: { id } }: { params: { id: string } }) {
           `${process.env.NEXT_PUBLIC_SERVER}/api/get-user`,
           { walletAddress: account.address }
         );
-        const dataFromBackend = res.data.user;
+        const dataFromBackend = res.data;
         console.log("DATA FROM BACKEN YALL", dataFromBackend);
         setData(dataFromBackend);
         setLoaded(true);
