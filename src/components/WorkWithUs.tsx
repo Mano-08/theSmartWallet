@@ -38,11 +38,8 @@ function WorkWithUs() {
               >
                 SOCIALS
               </h2>
-              <div
-                target="_blank"
-                className="flex flex-row items-center gap-1 sm:gap-3"
-              >
-                <a href="https://twitter.com/50mmCollective">
+              <div className="flex flex-row items-center gap-1 sm:gap-3">
+                <a href="https://twitter.com/50mmCollective" target="_blank">
                   <Image
                     src={twitter}
                     alt="Twitter"
