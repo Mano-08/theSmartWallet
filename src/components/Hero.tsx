@@ -43,8 +43,9 @@ export default function Hero() {
             />
           </div>
           <p className="text-white text-[7vw] sm:text-[4.5vw] md:text-[3.7vw] font-semibold max-w-[80vw] md:max-w-[40vw] leading-[1.2]">
-            SMART WALLETS CONNECT TO YOUR DEVICES PASSKEYS THROUGH
-            BLUETOOTH/FACEID SMART WALLET
+          JOIN OUR GLOBAL<br/>
+          DATABASE OF <br/>
+          ONCHAIN CREATORS
           </p>
           <div>
             <Link href="/signup">
