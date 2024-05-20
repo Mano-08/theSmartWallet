@@ -8,6 +8,7 @@ import { toast } from "react-hot-toast";
 import * as Form from "@radix-ui/react-form";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+
 function Connect() {
   const account = useAccount();
   const router = useRouter();
@@ -35,11 +36,17 @@ function Connect() {
   const [myExpertise, setMyExpertise] = useState<string[]>([]);
   const connector = connectors[0];
 
+  const sleep = (ms: number) => {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+  };
+
   const submitForm = async (data: any) => {
     console.log(data);
     await connect({ connector });
-
-    data["walletAddress"] = account?.address;
+    while (!account?.address) {
+      await sleep(100);
+    }
+    data["walletAddress"] = account.address;
     console.log(account.address);
     await axios.post(`${process.env.NEXT_PUBLIC_SERVER}/api/create-user`, data);
     router.push(`/portfolio/${account.address}`);
