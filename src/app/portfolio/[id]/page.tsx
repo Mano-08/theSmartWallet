@@ -44,13 +44,16 @@ function page({ params }: { params: { id: string } }) {
     try {
       if (imgFile) {
         setUploading(true);
-        const url = await upload(imgFile);
+        const url = await upload(account.address, imgFile);
         console.log(url, "Uploaded IMG URL");
         const res = await axios.post(
           `${process.env.NEXT_PUBLIC_SERVER}/api/upload-profile-pic`,
           { walletAddress: id, profilePicURL: url }
         );
-        setData(res.data);
+        setData((oldData: any) => {
+          const newData = { ...oldData, profilePicURL: url };
+          return newData;
+        });
         toast.success("Updated profile successfully!");
       } else {
         if (removedImage) {
@@ -59,7 +62,10 @@ function page({ params }: { params: { id: string } }) {
             `${process.env.NEXT_PUBLIC_SERVER}/api/upload-profile-pic`,
             { walletAddress: id, profilePicURL: "" }
           );
-          setData(res.data);
+          setData((oldData: any) => {
+            const newData = { ...oldData, profilePicURL: "" };
+            return newData;
+          });
         }
       }
       setUploading(false);
@@ -123,13 +129,14 @@ function page({ params }: { params: { id: string } }) {
             <div className="flex bg-white px-5 py-16 flex-col items-center gap-2 h-[70vh] w-[90vw] md:w-[30vw] fixed z-[10055] top-[15vh] left-[5vw] md:left-[35vw] shadow-md">
               <Image
                 src={
-                  uploadedImage
-                    ? uploadedImage
-                    : data &&
-                        (data["profilePic"] === undefined ||
-                          data["profilePic"] === "")
-                      ? defaultPic
-                      : data["profilePic"]
+                  removedImage
+                    ? defaultPic
+                    : uploadedImage
+                      ? uploadedImage
+                      : data["profilePicURL"] === undefined ||
+                          data["profilePicURL"] === ""
+                        ? defaultPic
+                        : data["profilePicURL"]
                 }
                 alt="profile picture"
                 width={210}
@@ -173,15 +180,14 @@ function page({ params }: { params: { id: string } }) {
         <section className="flex flex-col items-center md:flex-row md:items-start gap-6 py-10 px-5 sm:px-[5vw] md:px-[10vw]">
           <Image
             src={
-              data &&
-              data["profilePic"] !== "" &&
-              data["profilePic"] !== undefined
-                ? data["profilePic"]
-                : defaultPic
+              data["profilePicURL"] === "" ||
+              data["profilePicURL"] === undefined
+                ? defaultPic
+                : data["profilePicURL"]
             }
             height={180}
             width={180}
-            onClick={() => id !== account.address && setProfileDialog(true)}
+            onClick={() => id === account.address && setProfileDialog(true)}
             alt="avatar"
             className="h-[180px] w-[180px] block object-cover object-center rounded-full"
           />

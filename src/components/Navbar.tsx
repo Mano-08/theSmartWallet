@@ -5,28 +5,30 @@ import { useState } from "react";
 import { Dialog } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
-import { useAccount } from "wagmi";
+import { useAccount, useDisconnect } from "wagmi";
 import { useRouter } from "next/navigation";
 import { toast } from "react-hot-toast";
-
-const navigation = [
-  { name: "Home", href: "/" },
-  { name: "SignUp", href: "/signup" },
-];
 
 function Nav() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const router = useRouter();
   const account = useAccount();
+  const { disconnect } = useDisconnect();
 
   const handleClickPortfolio = () => {
-    if (account.address) {
+    if (account?.address) {
       router.push(`/portfolio/${account.address}`);
     } else {
       toast.error("Please sign in to view portfolio");
       router.push("/signup");
     }
   };
+
+  const signout = async () => {
+    await disconnect();
+    router.push("/");
+  };
+
   return (
     <header className="absolute inset-x-0 top-0 z-50">
       <nav
@@ -44,15 +46,28 @@ function Nav() {
           </button>
         </div>
         <div className="hidden lg:flex lg:flex-row lg:items-center lg:justify-end lg:gap-x-12">
-          {navigation.map((item) => (
-            <Link
-              key={item.name}
-              href={item.href}
+          <Link
+            href="/"
+            className="text-sm font-semibold leading-6 transition-colors duration-150 text-neutral-400 hover:text-neutral-300"
+          >
+            Home
+          </Link>
+          {account?.address ? (
+            <button
+              onClick={signout}
               className="text-sm font-semibold leading-6 transition-colors duration-150 text-neutral-400 hover:text-neutral-300"
             >
-              {item.name}
+              Sign Out
+            </button>
+          ) : (
+            <Link
+              href="/signup"
+              className="text-sm font-semibold leading-6 transition-colors duration-150 text-neutral-400 hover:text-neutral-300"
+            >
+              Sign Up
             </Link>
-          ))}
+          )}
+
           <button
             onClick={handleClickPortfolio}
             className="text-sm font-semibold leading-6 transition-colors duration-150 text-neutral-400 hover:text-neutral-300"
@@ -82,15 +97,27 @@ function Nav() {
           <div className="mt-6 flow-root">
             <div className="-my-6 divide-y divide-gray-500/10">
               <div className="space-y-2 py-6">
-                {navigation.map((item) => (
-                  <Link
-                    key={item.name}
-                    href={item.href}
+                <Link
+                  href="/"
+                  className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                >
+                  Home
+                </Link>
+                {account?.address ? (
+                  <button
+                    onClick={signout}
                     className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                   >
-                    {item.name}
+                    Sign Out
+                  </button>
+                ) : (
+                  <Link
+                    href="/signup"
+                    className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                  >
+                    Sign Up
                   </Link>
-                ))}
+                )}
                 <button
                   onClick={handleClickPortfolio}
                   className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
