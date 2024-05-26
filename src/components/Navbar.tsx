@@ -26,7 +26,7 @@ function Nav() {
 
   const signout = async () => {
     await disconnect();
-    router.push("/");
+    window.location.href="/"
   };
 
   return (
